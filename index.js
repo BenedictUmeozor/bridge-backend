@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import { NotFound, errorHandler } from "./middleware/error.js";
 import { logger } from "./middleware/logger.js";
 import AuthRoutes from "./routes/auth.js";
-import UserRoutes from "./routes/user.js";
 
 const app = express();
 dotenv.config();
@@ -23,7 +22,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", AuthRoutes);
-app.use("/api/users", UserRoutes);
 
 app.use(NotFound);
 app.use(errorHandler);
