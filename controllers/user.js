@@ -8,7 +8,6 @@ export const getUser = expressAsyncHandler(async (req, res) => {
 export const updateProfile = expressAsyncHandler(async (req, res) => {
   const {
     name,
-    dateOfBirth,
     phoneNumber,
     country,
     city,
@@ -20,9 +19,10 @@ export const updateProfile = expressAsyncHandler(async (req, res) => {
   } = req.body;
   const { id } = req.user;
 
+  console.log(id);
+
   console.log(
     name,
-    dateOfBirth,
     phoneNumber,
     country,
     city,
@@ -33,21 +33,6 @@ export const updateProfile = expressAsyncHandler(async (req, res) => {
     surname
   );
 
-  if (
-    !name ||
-    !dateOfBirth ||
-    !phoneNumber ||
-    !country ||
-    !city ||
-    !homeAddress ||
-    !postalCode ||
-    !BVN ||
-    !PIN ||
-    !surname
-  ) {
-    throw new Error("All fields are required");
-  }
-
   if (typeof PIN === "undefined") {
     throw new Error("Please provide a PIN");
   }
@@ -57,20 +42,43 @@ export const updateProfile = expressAsyncHandler(async (req, res) => {
     throw new Error("User does not exist");
   }
 
-  user.set({
-    name,
-    surname,
-    dateOfBirth,
-    phoneNumber,
-    country,
-    city,
-    homeAddress,
-    postalCode,
-    PIN,
-    BVN,
-  });
+  if (name) {
+    user.name = name;
+  }
+
+  if (BVN) {
+    user.BVN = BVN;
+  }
+
+  if (PIN) {
+    user.PIN = PIN;
+  }
+
+  if (postalCode) {
+    user.postalCode = postalCode;
+  }
+
+  if (homeAddress) {
+    user.homeAddress = homeAddress;
+  }
+
+  if (country) {
+    user.country = country;
+  }
+
+  if (city) {
+    user.city = city;
+  }
+
+  if (surname) {
+    user.surname = surname;
+  }
+
+  if (phoneNumber) {
+    user.phoneNumber = phoneNumber;
+  }
 
   await user.save();
-
+  console.log(user);
   res.status(200).json({ message: "success" });
 });

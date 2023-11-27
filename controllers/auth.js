@@ -81,7 +81,7 @@ export const login = expressAsyncHandler(async (req, res) => {
   }
 
   res.status(200).json({
-    user: user._id,
+    _id: user._id,
     token: generateToken(user._id),
   });
 });
