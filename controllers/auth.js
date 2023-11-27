@@ -69,7 +69,6 @@ export const login = expressAsyncHandler(async (req, res) => {
   }
 
   const user = await User.findOne({ email });
-  console.log(user)
   
   if (!user) {
     throw new Error("Invalid email or password");

@@ -9,6 +9,9 @@ const userSchema = new Schema(
     name: {
       type: String,
     },
+    surname: {
+      type: String,
+    },
     accountType: {
       type: String,
       required: true,
@@ -39,6 +42,32 @@ const userSchema = new Schema(
         ref: "User",
       },
     ],
+    dateOfBirth: {
+      month: {
+        type: String,
+      },
+      day: {
+        type: String,
+      },
+      year: {
+        type: String,
+      },
+    },
+    city: {
+      type: String,
+    },
+    homeAddress: {
+      type: String,
+    },
+    postalCode: {
+      type: String,
+    },
+    BVN: {
+      type: String,
+    },
+    PIN: {
+      type: String,
+    },
   },
   {
     timestamps: true,

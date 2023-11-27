@@ -1,5 +1,9 @@
 import express from "express";
+import { getUser, updateProfile } from "../controllers/user.js";
 
 const router = express.Router();
 
-export default router
+router.get("/", getUser);
+router.put("/update", updateProfile);
+
+export default router;
